@@ -7,7 +7,7 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
 
-// Функция программной задержки
+// Program delay function
 void Soft_Delay(volatile uint32_t number)
 {
   while(number--);
@@ -16,13 +16,13 @@ void Soft_Delay(volatile uint32_t number)
 void blink(void *pvParameters)
 {
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-  GPIO_InitTypeDef  ledinit;  // создаем структуру
+  GPIO_InitTypeDef  ledinit;  // To create a structure
 
-  ledinit.GPIO_Mode = GPIO_Mode_OUT;  // направление - выход
-  ledinit.GPIO_OType = GPIO_OType_PP;  // Двухтактный выход
-  ledinit.GPIO_PuPd = GPIO_PuPd_NOPULL;  // Без подтяжки
-  ledinit.GPIO_Speed = GPIO_Speed_2MHz;  // Скорость низкая
-  ledinit.GPIO_Pin = GPIO_Pin_13; // Светодиод на 15м выводе
+  ledinit.GPIO_Mode = GPIO_Mode_OUT;  // Mode - output
+  ledinit.GPIO_OType = GPIO_OType_PP;  // Type - Push Pull
+  ledinit.GPIO_PuPd = GPIO_PuPd_NOPULL;  // Without pullup/pulldown
+  ledinit.GPIO_Speed = GPIO_Speed_2MHz;  // Speed 2 MHz
+  ledinit.GPIO_Pin = GPIO_Pin_13; // The number of pin - 13
 
   GPIO_Init(GPIOC, &ledinit);
   while(1)
